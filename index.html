@@ -3,33 +3,273 @@
 <head>
 <meta charset="UTF-8">
 <title>Angelo Clarence Arce | IT Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY */
 body {
     background: #0b1220;
     color: white;
-    font-family: Arial;
-    padding: 20px;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    padding-top: 80px; /* FIX: prevents header overlap */
 }
 
+/* HEADER */
 header {
-    text-align: right;
-    margin-bottom: 40px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-end; /* FIX: push icons right */
+    align-items: center;
+    padding: 18px 40px;
+    z-index: 1000;
+
+    background: linear-gradient(-45deg, #0b1220, #1e3a8a, #0f172a, #38bdf8);
+    background-size: 400% 400%;
+    animation: headerGradient 8s ease infinite;
 }
 
-.hero {
+@keyframes headerGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* TECH ICONS */
+.tech-icons {
     display: flex;
-    justify-content: space-between;
+    gap: 18px;
+    font-size: 26px;
+}
+
+.tech-icons i {
+    color: white;
+    transition: 0.3s;
+}
+
+.tech-icons i:hover {
+    transform: scale(1.3);
+    color: #38bdf8;
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
+    display: flex;
     align-items: center;
+    justify-content: space-between;
+    padding: 0 80px;
+    background: radial-gradient(circle at top, #1e3a8a, #0b1220);
+    position: relative;
+}
+
+/* BACKGROUND */
+.hero-code-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url("https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif");
+    background-size: cover;
+    opacity: 0.10;
+}
+
+/* TEXT */
+.hero-text {
+    max-width: 600px;
+    z-index: 2;
+}
+
+/* PROFILE FIX (NO FACE CUT) */
+.profile {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #38bdf8;
+    box-shadow: 0 0 30px #38bdf8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .profile img {
-    width: 200px;
-    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top; /* FIX: shows full face properly */
 }
 
+/* SECTIONS SPACING FIX */
 section {
-    margin-top: 50px;
+    padding: 120px 80px; /* FIX: more breathing space */
+}
+
+/* HEADINGS */
+h2 {
+    margin-bottom: 20px;
+}
+
+/* ABOUT CARDS */
+.about-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.about-card {
+    background: #1e293b;
+    padding: 25px;
+    border-radius: 12px;
+    border-left: 4px solid #38bdf8;
+}
+
+/* EDUCATION */
+.edu-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.edu-box {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+}
+
+/* SKILLS */
+.skill-box {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.skill {
+    padding: 12px 18px;
+    background: #1e293b;
+    border-radius: 8px;
+}
+
+/* PROGRESS BARS */
+.progress-container {
+    margin-top: 20px;
+}
+
+.progress-item {
+    margin-bottom: 18px;
+}
+
+.progress-title {
+    margin-bottom: 5px;
+    color: #cbd5e1;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #1e293b;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #38bdf8, #22d3ee);
+    box-shadow: 0 0 10px #38bdf8;
+    border-radius: 50px;
+    transition: width 1.5s ease;
+}
+
+/* ANIMATION TRIGGER */
+section.show .progress-fill.html { width: 90%; }
+section.show .progress-fill.css { width: 85%; }
+section.show .progress-fill.python { width: 70%; }
+section.show .progress-fill.mysql { width: 65%; }
+/* ===================== */
+/* GLITCH TITLE EFFECT */
+/* ===================== */
+
+.glitch {
+    font-size: 55px;
+    font-weight: 900;
+    color: #38bdf8;
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+/* layers */
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* RED SHIFT */
+.glitch::before {
+    color: #ff004c;
+    z-index: -1;
+    animation: glitchTop 1.2s infinite linear;
+}
+
+/* BLUE SHIFT */
+.glitch::after {
+    color: #00e5ff;
+    z-index: -2;
+    animation: glitchBottom 1.2s infinite linear;
+}
+
+/* MAIN SHAKE */
+.glitch {
+    animation: glitchMain 1.2s infinite linear;
+}
+
+/* ANIMATIONS */
+@keyframes glitchMain {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    60% { transform: translate(-2px, -1px); }
+    80% { transform: translate(2px, 1px); }
+    100% { transform: translate(0); }
+}
+
+@keyframes glitchTop {
+    0% { transform: translate(0); }
+    20% { transform: translate(-3px, -3px); }
+    40% { transform: translate(-2px, 2px); }
+    60% { transform: translate(-4px, -2px); }
+    80% { transform: translate(-1px, 3px); }
+    100% { transform: translate(0); }
+}
+
+@keyframes glitchBottom {
+    0% { transform: translate(0); }
+    20% { transform: translate(3px, 3px); }
+    40% { transform: translate(2px, -2px); }
+    60% { transform: translate(4px, 2px); }
+    80% { transform: translate(1px, -3px); }
+    100% { transform: translate(0); }
 }
 </style>
 </head>
@@ -37,39 +277,139 @@ section {
 <body>
 
 <header>
-    <p>HTML | CSS | Python | MySQL</p>
+    <div class="tech-icons">
+        <i class="fab fa-html5"></i>
+        <i class="fab fa-css3-alt"></i>
+        <i class="fab fa-python"></i>
+        <i class="fas fa-database"></i>
+    </div>
 </header>
 
+<!-- HERO -->
 <div class="hero">
-    <div>
-        <h1>HI, I'M ANGELO</h1>
-        <p>Aspiring IT Professional</p>
+
+    <div class="hero-code-bg"></div>
+
+    <div class="hero-text">
+        <h1 class="glitch" data-text="HI, I'M ANGELO"><b>HI, I'M ANGELO</b></h1>
+        <p>Aspiring IT Professional | Web Developer | Python & Database Enthusiast</p>
     </div>
 
     <div class="profile">
-        <img src="angelo.jpg">
+        <img src="angelo.jpg" alt="Profile Picture">
     </div>
+
 </div>
 
-<section>
+<!-- ABOUT -->
+<section class="about">
     <h2>About Me</h2>
-    <p>I am an aspiring programmer with knowledge in web development and databases.</p>
+
+    <div class="about-cards">
+
+        <div class="about-card">
+            <h3>Who I Am</h3>
+            <p>I am an aspiring programmer with a strong interest in web development and database management. I have skills in HTML and CSS, which I use to design and build responsive and visually appealing websites.</p>
+            <p>I also have knowledge in MySQL, allowing me to create and manage databases efficiently.</p>
+        </div>
+
+        <div class="about-card">
+            <h3>Skills</h3>
+            <p>HTML, CSS, Python, MySQL development experience.</p>
+        </div>
+
+        <div class="about-card">
+            <h3>Goal</h3>
+            <p>My goal is to build websites that feel almost magical in how they work and look for my future clients. I aim to create smooth, creative, and user-friendly web experiences that exceed client expectations.</p>
+        </div>
+
+    </div>
 </section>
 
-<section>
-    <h2>Education</h2>
-    <p>BSIT - Guagua National Colleges Inc.</p>
+<!-- EDUCATION -->
+<section class="education">
+    <h2>Educational Background</h2>
+
+    <div class="edu-container">
+        <div class="edu-box">
+            <h3>Bachelor of Science in IT</h3>
+            <p>Guagua National Colleges Inc.</p>
+        </div>
+    </div>
 </section>
 
+<!-- SKILLS -->
 <section>
+
     <h2>Skills</h2>
-    <p>HTML, CSS, Python, MySQL</p>
+
+    <div class="skill-box">
+        <div class="skill">HTML</div>
+        <div class="skill">CSS</div>
+        <div class="skill">Python</div>
+        <div class="skill">MySQL</div>
+    </div>
+
+    <h2 style="margin-top:40px;">What I Know</h2>
+
+    <div class="progress-container">
+
+        <div class="progress-item">
+            <div class="progress-title">HTML</div>
+            <div class="progress-bar">
+                <div class="progress-fill html"></div>
+            </div>
+        </div>
+
+        <div class="progress-item">
+            <div class="progress-title">CSS</div>
+            <div class="progress-bar">
+                <div class="progress-fill css"></div>
+            </div>
+        </div>
+
+        <div class="progress-item">
+            <div class="progress-title">Python</div>
+            <div class="progress-bar">
+                <div class="progress-fill python"></div>
+            </div>
+        </div>
+
+        <div class="progress-item">
+            <div class="progress-title">MySQL</div>
+            <div class="progress-bar">
+                <div class="progress-fill mysql"></div>
+            </div>
+        </div>
+
+    </div>
+
 </section>
 
+<!-- CONTACT -->
 <section>
     <h2>Contact</h2>
     <p>Email: angeloarce@gmail.com</p>
+    <p>Instagram: clarencefrmthaslums</p>
+    <p>Phone Number: 09123456789</p>
 </section>
+
+<script>
+const sections = document.querySelectorAll("section");
+
+function reveal() {
+    const trigger = window.innerHeight * 0.85;
+
+    sections.forEach(sec => {
+        if (sec.getBoundingClientRect().top < trigger) {
+            sec.classList.add("show");
+        }
+    });
+}
+
+window.addEventListener("scroll", reveal);
+reveal();
+</script>
 
 </body>
 </html>
